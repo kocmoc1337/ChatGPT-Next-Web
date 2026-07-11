@@ -1,5 +1,5 @@
-import MyPage from "./my-page";
+import Jarvis from "./jarvis";
 
 export default function Page() {
-  return <MyPage />;
+  return <Jarvis />;
 }
