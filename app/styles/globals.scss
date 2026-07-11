@@ -399,3 +399,35 @@ pre {
 .copyable {
   user-select: text;
 }
+/* ХАКЕРСКИЙ СТИЛЬ */
+:root {
+  --neon-green: #00ff41;
+  --dark-bg: #0a0a0a;
+}
+
+body {
+  background: var(--dark-bg) !important;
+  color: var(--neon-green) !important;
+  font-family: 'Courier New', monospace !important;
+}
+
+button, input, textarea {
+  background: transparent !important;
+  border: 1px solid var(--neon-green) !important;
+  color: var(--neon-green) !important;
+}
+
+button:hover {
+  background: var(--neon-green) !important;
+  color: var(--dark-bg) !important;
+  box-shadow: 0 0 20px rgba(0, 255, 65, 0.3) !important;
+}
+
+.message, .chat-item {
+  border-left: 2px solid var(--neon-green) !important;
+  padding-left: 15px !important;
+}
+
+h1, h2, h3, .title {
+  text-shadow: 0 0 15px var(--neon-green) !important;
+}
