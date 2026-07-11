@@ -1,0 +1,142 @@
+/* ==========================================================
+   JARVIS Glass — drop-in utility classes
+   Просто добавь className="..." к своим существующим элементам,
+   ничего не нужно переписывать.
+   ========================================================== */
+
+/* Фон всей страницы чата — повесь на самый внешний div */
+.jarvis-bg {
+  min-height: 100dvh;
+  background:
+    radial-gradient(ellipse at center, #061420 0%, #020409 70%),
+    radial-gradient(1px 1px at 20px 30px, rgba(200,235,255,0.6), transparent),
+    radial-gradient(1px 1px at 90px 120px, rgba(200,235,255,0.4), transparent),
+    radial-gradient(1.5px 1.5px at 160px 60px, rgba(200,235,255,0.5), transparent),
+    radial-gradient(1px 1px at 220px 180px, rgba(200,235,255,0.3), transparent),
+    radial-gradient(1.5px 1.5px at 280px 40px, rgba(200,235,255,0.5), transparent),
+    radial-gradient(1px 1px at 40px 200px, rgba(200,235,255,0.4), transparent);
+  background-repeat: repeat;
+  background-size: 100% 100%, 300px 300px, 300px 300px, 300px 300px, 300px 300px, 300px 300px, 300px 300px;
+  color: #d8f6ff;
+  font-family: "Segoe UI", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Мерцающая цветная дымка на фоне — необязательный доп. слой */
+.jarvis-bg::before {
+  content: "";
+  position: fixed;
+  inset: -10%;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 40% 30% at 20% 25%, rgba(79,216,255,0.10), transparent 60%),
+    radial-gradient(ellipse 35% 40% at 80% 70%, rgba(139,157,255,0.08), transparent 60%);
+  filter: blur(2px);
+}
+
+/* Стеклянная панель — на любую карточку/пузырь/хедер */
+.jarvis-glass {
+  background: linear-gradient(135deg, rgba(79,216,255,0.08), rgba(79,216,255,0.02));
+  border: 1px solid rgba(79,216,255,0.2);
+  border-radius: 14px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 0 20px rgba(79,216,255,0.06), inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+/* Пузырь сообщения от пользователя (справа, голубой оттенок) */
+.jarvis-bubble-user {
+  background: linear-gradient(135deg, rgba(79,216,255,0.22), rgba(79,216,255,0.08));
+  border: 1px solid rgba(79,216,255,0.35);
+  border-radius: 16px;
+  border-bottom-right-radius: 4px;
+  padding: 11px 16px;
+  color: #eafcff;
+  backdrop-filter: blur(8px);
+}
+
+/* Пузырь ответа ассистента (слева, нейтральное стекло) */
+.jarvis-bubble-assistant {
+  background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.015));
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px;
+  border-bottom-left-radius: 4px;
+  padding: 11px 16px;
+  color: #d8f6ff;
+  backdrop-filter: blur(8px);
+}
+
+/* Мерцающий градиентный заголовок */
+.jarvis-title {
+  font-weight: 300;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, #8fe8ff, #ffffff 45%, #8fe8ff);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 24px rgba(79,216,255,0.5);
+  animation: jarvis-shimmer 6s linear infinite;
+}
+@keyframes jarvis-shimmer {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Поле ввода */
+.jarvis-input {
+  background: rgba(3,10,16,0.6);
+  border: 1px solid rgba(79,216,255,0.3);
+  border-radius: 22px;
+  padding: 11px 18px;
+  color: #d8f6ff;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.jarvis-input::placeholder { color: rgba(79,216,255,0.4); }
+.jarvis-input:focus {
+  border-color: #4fd8ff;
+  box-shadow: 0 0 14px rgba(79,216,255,0.35);
+}
+
+/* Кнопка отправки / любая круглая кнопка */
+.jarvis-btn {
+  border-radius: 50%;
+  border: 1px solid rgba(79,216,255,0.4);
+  background: rgba(79,216,255,0.12);
+  color: #4fd8ff;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.jarvis-btn:hover {
+  background: #4fd8ff;
+  color: #02121c;
+  box-shadow: 0 0 16px rgba(79,216,255,0.5);
+}
+
+/* Светящаяся точка-статус ("онлайн") */
+.jarvis-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #4fd8ff;
+  box-shadow: 0 0 8px rgba(79,216,255,0.9);
+  animation: jarvis-pulse 1.6s ease-in-out infinite;
+}
+@keyframes jarvis-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+/* Маленький светящийся orb-аватар (как ядро реактора) */
+.jarvis-orb {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 38% 32%, #ffffff 0%, #8fe8ff 25%, #4fd8ff 55%, #0a3a52 85%, transparent 100%);
+  box-shadow: 0 0 12px 2px rgba(79,216,255,0.6);
+  flex-shrink: 0;
+}
